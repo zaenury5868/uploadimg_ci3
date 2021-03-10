@@ -14,6 +14,7 @@ class Upload extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'single upload';
+		$data['images'] = $this->Upload_model->getDataImage(); //ambil data dari model
 		$this->load->view('singleupload/index', $data);
 	}
 

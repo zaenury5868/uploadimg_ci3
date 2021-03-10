@@ -37,12 +37,21 @@
                         <?= form_close(); ?>
                     </div>
                 </div>
-                <div class="card mt-3">
-                    <div class="card-header">
-                        hasil upload
-                    </div>
-                    <div class="card-body">
-                        <img src="" alt="" class="img-thumbnail">
+                <div class="col-sm-12 mt-2">
+                    <div class="card">
+                        <div class="card-header">
+                            hasil upload
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <?php foreach($images as $image) : ?>
+                                <div class="col-sm-4">
+                                    <img src="<?= base_url('assets/image/'.$image['image']); ?>"
+                                        alt="<?= $image['title']; ?>" class="img-thumbnail">
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

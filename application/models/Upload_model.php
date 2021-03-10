@@ -8,4 +8,9 @@ class Upload_model extends CI_Model {
 		$this->db->insert('upload_image', $data);
 		return $this->db->affected_rows();
 	}
+
+	public function getDataImage()
+	{
+		return $this->db->get('upload_image')->result_array();
+	}
 }
