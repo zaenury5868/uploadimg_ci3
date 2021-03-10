@@ -44,12 +44,20 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
+                                <!-- cek gambar jika ada-->
+                                <?php if($images): ?>
                                 <?php foreach($images as $image) : ?>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 p-2">
                                     <img src="<?= base_url('assets/image/'.$image['image']); ?>"
                                         alt="<?= $image['title']; ?>" class="img-thumbnail">
                                 </div>
                                 <?php endforeach; ?>
+                                <!-- jika tidak ada gambar -->
+                                <?php else: ?>
+                                <div class="col-sm-4">
+                                    <h3 class="text-danger text-center">data masih kosong</h3>
+                                </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
