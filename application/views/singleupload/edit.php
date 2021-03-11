@@ -15,60 +15,28 @@
         <div class="row mt-3">
             <div class="col-sm-12">
                 <h3>single upload</h3>
-                <h4 class="text-danger"><?= $this->session->flashdata('status');?></h4>
                 <div class="card">
                     <div class="card-header">
                         upload image
                     </div>
                     <div class="card-body">
-                        <?= form_open_multipart('upload/file/add'); ?>
+                        <?= form_open_multipart('upload/file/edit'); ?>
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">gambar</label>
                             <div class="col-sm-8">
-                                <input type="hidden" name="id" value="">
+                                <input type="hidden" name="id" value="<?= $byId['id']; ?>">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="image" name="image">
                                     <Label class="custom-file-label" for="image">pilih file</Label>
                                 </div>
+                                <img src="<?= base_url('assets/image/'.$byId['image']); ?>" alt="<?= $byId['title']; ?>"
+                                    class="img-thumbnail">
                             </div>
                             <div class="col-sm-2">
                                 <button type="submit" class="btn btn-primary">simpan</button>
                             </div>
                         </div>
                         <?= form_close(); ?>
-                    </div>
-                </div>
-                <div class="col-sm-12 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                            hasil upload
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <!-- cek gambar jika ada-->
-                                <?php if($images): ?>
-                                <?php foreach($images as $image) : ?>
-                                <div class="col-sm-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <img src="<?= base_url('assets/image/'.$image['image']); ?>"
-                                                alt="<?= $image['title']; ?>" class="img-thumbnail">
-                                        </div>
-                                        <div class="card-footer">
-                                            <a href="<?= base_url('upload/edit/'. $image['id']); ?>"
-                                                class="btn btn-primary">edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php endforeach; ?>
-                                <!-- jika tidak ada gambar -->
-                                <?php else: ?>
-                                <div class="col-sm-4">
-                                    <h3 class="text-danger text-center">data masih kosong</h3>
-                                </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -85,11 +53,12 @@
     </script>
     <script>
     // ketika klik pilih gambar 
-    $('.custom-file-input').on('change', function() { //saat class input ini di tekan jalankan fungsi dibawah
-        let fileName = $(this).val().split('\\').pop(); // variable untuk ambil value gambar
-        $(this).next('.custom-file-label').addClass('selected').html(
-            fileName); //cari class label berikut diambil dari variable fileName
-    });
+    $('.custom-file-input').on('change',
+        function() { //saat class input ini di tekan jalankan fungsi dibawah
+            let fileName = $(this).val().split('\\').pop(); // variable untuk ambil value gambar
+            $(this).next('.custom-file-label').addClass('selected').html(
+                fileName); //cari class label berikut diambil dari variable fileName
+        });
     </script>
 </body>
 

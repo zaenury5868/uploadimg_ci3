@@ -18,7 +18,7 @@ class Upload extends CI_Controller {
 		$this->load->view('singleupload/index', $data);
 	}
 
-	public function file()
+	public function file($type)
 	{
 		$upload = $_FILES['image']['name']; //nama gambar
 		//jika ada data upload file gambar
@@ -45,11 +45,16 @@ class Upload extends CI_Controller {
 
 				
 				$data = [
+					'id' => $this->input->post('id'),
 					'image' => $imageName,
 					'title' => $imageName,
 					'date_created' => time()
 				];
-				if($this->Upload_model->upload($data) > 0){ // jika upload gambar lebih dari 0
+				if($type == 'edit'){
+					$oldImage = $this->Upload_model->getDataById($data['id']);
+					unlink('./assets/image/'. $oldImage['image']);
+				}
+				if($this->Upload_model->upload($data, $type) > 0){ // jika upload gambar lebih dari 0
 					$this->session->set_flashdata('status', 'data berhasil disimpan');
 					redirect('upload');
 				}else{
@@ -67,5 +72,13 @@ class Upload extends CI_Controller {
 			$this->session->set_flashdata('status', 'tidak ada gambar yang di upload');
 			redirect('upload');
 		}
+	}
+
+	public function edit($id)
+	{
+		$data['title'] = 'edit gambar';
+		$data['byId'] = $this->Upload_model->getDataById($id);
+		$this->load->view('singleupload/edit', $data);
+		
 	}
 }
