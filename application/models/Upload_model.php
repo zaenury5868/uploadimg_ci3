@@ -22,4 +22,10 @@ class Upload_model extends CI_Model {
 	{
 		return $this->db->get_where('upload_image', ['id'=>$id])->row_array();
 	}
+	public function delete($id)
+	{
+		$this->db->delete('upload_image', ['id' => $id]);
+		return $this->db->affected_rows();
+		
+	}
 }

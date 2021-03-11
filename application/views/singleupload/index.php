@@ -57,6 +57,9 @@
                                         <div class="card-footer">
                                             <a href="<?= base_url('upload/edit/'. $image['id']); ?>"
                                                 class="btn btn-primary">edit</a>
+                                            <a href="<?= base_url('upload/delete/'. $image['id']); ?>"
+                                                class="btn btn-danger"
+                                                onclick="return confirm('apakah yakin akan dihapus gambarnya?')">hapus</a>
                                         </div>
                                     </div>
                                 </div>

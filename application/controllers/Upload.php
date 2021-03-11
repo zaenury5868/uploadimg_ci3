@@ -81,4 +81,16 @@ class Upload extends CI_Controller {
 		$this->load->view('singleupload/edit', $data);
 		
 	}
+	public function delete($id)
+	{
+		$oldImage = $this->Upload_model->getDataById($id);
+		unlink('./assets/image/'. $oldImage['image']);
+		if($this->Upload_model->delete($id) > 0){
+			$this->session->set_flashdata('status', 'data berhasil dihapus');
+			redirect('upload');
+		}else {
+			$this->session->set_flashdata('status', 'server gangguan');
+			redirect('upload');
+		}
+	}
 }
