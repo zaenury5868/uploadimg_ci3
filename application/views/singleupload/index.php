@@ -47,9 +47,17 @@
                                 <!-- cek gambar jika ada-->
                                 <?php if($images): ?>
                                 <?php foreach($images as $image) : ?>
-                                <div class="col-sm-4 p-2">
-                                    <img src="<?= base_url('assets/image/'.$image['image']); ?>"
-                                        alt="<?= $image['title']; ?>" class="img-thumbnail">
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src="<?= base_url('assets/image/'.$image['image']); ?>"
+                                                alt="<?= $image['title']; ?>" class="img-thumbnail">
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="<?= base_url('upload/edit/'. $image['id']); ?>"
+                                                class="btn btn-primary">edit</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <?php endforeach; ?>
                                 <!-- jika tidak ada gambar -->
