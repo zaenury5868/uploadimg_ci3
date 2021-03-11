@@ -31,6 +31,19 @@ class Upload extends CI_Controller {
 			if($this->upload->do_upload('image')){
 				//file berhasil diupload
 				$imageName = $this->upload->data('file_name');
+				//resize gambar
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './assets/image/'.$imageName;
+				$config['create_thumb'] = false;
+				$config['quality'] = '100%';
+				$config['width'] = '600';
+				$config['height'] = '350';
+				$config['new_image'] = './assets/image/'. $imageName;
+				
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+
+				
 				$data = [
 					'image' => $imageName,
 					'title' => $imageName,
